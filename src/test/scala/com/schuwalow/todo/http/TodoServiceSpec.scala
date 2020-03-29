@@ -11,12 +11,14 @@ import zio.interop.catz._
 import zio.test._
 
 import com.schuwalow.todo.http.TodoService.TodoItemWithUri
-import com.schuwalow.todo.repository.{ InMemoryTodoRepository, TodoRepository }
+import com.schuwalow.todo.log.Slf4jLogging
+import com.schuwalow.todo.repository.InMemoryTodoRepository
+import com.schuwalow.todo.repository.TodoRepositoryWithLogging
 
 object TodoServiceSpec extends DefaultRunnableSpec {
-  type TodoTask[A] = RIO[TodoRepository, A]
+  type TodoTask[A] = RIO[TodoRepositoryWithLogging, A]
 
-  val app = TodoService.routes[TodoRepository]("").orNotFound
+  val app = TodoService.routes[TodoRepositoryWithLogging]("").orNotFound
 
   override def spec =
     suite("TodoService")(
@@ -112,5 +114,5 @@ object TodoServiceSpec extends DefaultRunnableSpec {
             ]""")
         )
       }
-    ).provideSomeLayer[ZEnv](InMemoryTodoRepository.layer)
+    ).provideSomeLayer[ZEnv](InMemoryTodoRepository.layer ++ Slf4jLogging.layer)
 }

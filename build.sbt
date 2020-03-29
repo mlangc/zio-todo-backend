@@ -76,6 +76,8 @@ lazy val root = (project in file("."))
       "org.apache.logging.log4j" % "log4j-api"            % Log4j2Version,
       "org.apache.logging.log4j" % "log4j-core"           % Log4j2Version,
       "org.apache.logging.log4j" % "log4j-slf4j-impl"     % Log4j2Version,
+      "com.github.mlangc"        %% "slf4zio"             % "0.6.0",
+      "com.github.mlangc"        %% "zio-interop-log4j2"  % "0.2.0",
       "com.github.pureconfig"    %% "pureconfig"          % "0.12.1",
       "com.lihaoyi"              %% "sourcecode"          % "0.1.7",
       ("com.github.ghik" % "silencer-lib" % SilencerVersion % "provided")

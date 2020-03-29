@@ -2,12 +2,12 @@
 <Configuration status="INFO">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-t] %-15c{1.}: %m%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level %-15c{1.} %X: %msg%n"/>
         </Console>
     </Appenders>
 
     <Loggers>
-        <Logger name="com.schuwalow.todo" level="info"/>
+        <Logger name="com.schuwalow.todo" level="debug"/>
 
         <Root level="info">
             <AppenderRef ref="Console" />
